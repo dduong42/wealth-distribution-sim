@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wealth Distribution Simulation</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>When Random People Give Money to Random Other People</h1>
+        <p class="description" id="simulationDescription">
+            100 people start with $100 each. Every tick, each person gives $1 to a random other person.
+            Watch how wealth distributes over time.
+        </p>
+        
+        <div class="info-section">
+            <p>
+                This visualization is based on the article 
+                <a href="https://quomodocumque.wordpress.com/2017/06/27/when-random-people-give-money-to-random-other-people/" target="_blank">
+                    "When random people give money to random other people"
+                </a> by Jordan Ellenberg. 
+                The article explores how a seemingly fair process of random exchanges can lead to significant wealth inequality, 
+                demonstrating that complex economic patterns can emerge from simple rules.
+            </p>
+            
+            <p>
+                <strong>About the Gini Coefficient:</strong> The Gini coefficient measures income or wealth inequality within a population. 
+                It ranges from 0 (perfect equality, where everyone has the same amount) to 1 (perfect inequality, where one person has everything). 
+                In practice, most countries have Gini coefficients between 0.25 and 0.65. Watch how this value increases as the simulation progresses, 
+                showing growing inequality despite the random nature of the exchanges.
+            </p>
+        </div>
+        
+        <div class="controls">
+            <button id="startBtn">Start</button>
+            <button id="pauseBtn" disabled>Pause</button>
+            <button id="resetBtn">Reset</button>
+            <label>
+                Initial $: <input type="number" id="initialMoneyInput" min="1" max="1000" value="100" step="1">
+            </label>
+            <label>
+                Speed: <input type="range" id="speedSlider" min="1" max="100" value="50">
+            </label>
+            <label class="toggle-label">
+                <input type="checkbox" id="sortToggle" checked>
+                Sort by wealth
+            </label>
+        </div>
+        
+        <div class="stats">
+            <div class="stat">
+                <span class="stat-label">Tick:</span>
+                <span id="tickCount">0</span>
+            </div>
+            <div class="stat">
+                <span class="stat-label">People with $0:</span>
+                <span id="brokeCount">0</span>
+            </div>
+            <div class="stat">
+                <span class="stat-label">Gini Coefficient:</span>
+                <span id="giniCoef">0.00</span>
+            </div>
+            <div class="stat">
+                <span class="stat-label">Max Wealth:</span>
+                <span id="maxWealth">$100</span>
+            </div>
+        </div>
+        
+        <div class="visualization">
+            <canvas id="barChart" width="800" height="400"></canvas>
+            <canvas id="histogram" width="800" height="200"></canvas>
+        </div>
+    </div>
+    
+    <script src="simulation.js"></script>
+</body>
+</html>
